@@ -2,9 +2,7 @@
 
 namespace CopyAndPaste;
 
-use Illuminate\Support\ServiceProvider;
-
-class CopyAndPasteServiceProvider extends ServiceProvider {
+class ServiceProvider extends \Illuminate\Support\ServiceProvider {
 
     public function boot()
     {
