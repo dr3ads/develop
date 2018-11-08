@@ -1,6 +1,6 @@
 <?php
 
-namespace Vessel;
+namespace CopyAndPaste;
 
 use Illuminate\Support\ServiceProvider;
 
