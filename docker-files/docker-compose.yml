@@ -49,7 +49,7 @@ services:
     networks:
      - cpnet
 networks:
-  vessel:
+  cpnet:
     driver: "bridge"
 volumes:
   cpmysql:
