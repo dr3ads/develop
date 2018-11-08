@@ -68,15 +68,15 @@ if [ $# -gt 0 ]; then
 
     # Edit .env file to set correct hostnames for mysql/redis
     if [ "$1" == "init" ]; then
-        echo "VESSEL: Initializing Vessel..."
+        echo "DEVELOP: Initializing Vessel..."
         COMPOSER=$(which composer)
 
-        echo "VESSEL: Installing Predis"
+        echo "DEVELOP: Installing Predis"
         if [ -z "$COMPOSER" ]; then
           docker run -u $UID --rm -it \
             -v $(pwd):/opt \
             -w /opt \
-            shippingdocker/php-composer:latest \
+            copyandpaste/web-app:latest \
             composer require predis/predis
         else
             $COMPOSER require predis/predis
@@ -88,8 +88,8 @@ if [ $# -gt 0 ]; then
             exit 0
         fi
 
-        echo "VESSEL: Setting .env Variables"
-        cp .env .env.bak.vessel
+        echo "DEVELOP: Setting .env Variables"
+        cp .env .env.bak.develop
 
         if [ ! -z "$(grep "DB_HOST" .env)" ]; then
             $SEDCMD "s/DB_HOST=.*/DB_HOST=mysql/" .env
@@ -119,20 +119,20 @@ if [ $# -gt 0 ]; then
             rm .env.bak
         fi
 
-        if [ ! -f vessel ]; then
-            echo "No vessel file found within current working directory $(pwd)"
+        if [ ! -f develop ]; then
+            echo "No develop file found within current working directory $(pwd)"
             echo "Have you run the artisan vendor:publish command yet?"
             exit 0
         fi
 
-        echo "VESSEL: Making vessel command available"
-        chmod +x vessel
+        echo "DEVELOP: Making develop command available"
+        chmod +x develop
 
         echo ""
-        echo "VESSEL: Complete!"
-        echo "VESSEL: You can now use Vessel"
-        echo "VESSEL: Try starting it:"
-        echo "./vessel start"
+        echo "DEVELOP: Complete!"
+        echo "DEVELOp: You can now use Develop"
+        echo "DEVELOP: Try starting it:"
+        echo "./develop start"
 
 
     # Start up containers
@@ -194,7 +194,7 @@ if [ $# -gt 0 ]; then
         shift 1
         if [ "$EXEC" == "yes" ]; then
             $COMPOSE exec \
-                -u vessel \
+                -u develop \
                 app \
                 ./vendor/bin/phpunit "$@"
         else

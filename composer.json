@@ -1,27 +1,27 @@
 {
-    "name": "shipping-docker/vessel",
+    "name": "dr3ads/copyandpaste",
     "description": "Simple Docker dev environments",
     "license": "MIT",
     "authors": [
         {
-            "name": "Chris Fidao",
-            "email": "fideloper@gmail.com"
+            "name": "Arnel Basiliote",
+            "email": "arnel.basiliote@copypaste.ph"
         }
     ],
     "autoload": {
         "psr-4": {
-            "Vessel\\": "src/"
+            "Develop\\": "src/"
         }
     },
     "require": {},
     "extra": {
         "laravel": {
             "providers": [
-                "Vessel\\VesselServiceProvider"
+                "CopyAndPaste\\CopyAndPasteServiceProvider"
             ]
         }
     },
     "scripts": {
-        "post-update-cmd": "echo 'VESSEL: Updates may require rebuilding your images.\nVESSEL: See https://github.com/shipping-docker/vessel/releases for details.'"
+        
     }
 }

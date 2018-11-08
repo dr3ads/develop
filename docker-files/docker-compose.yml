@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 services:
   app:
     build:
@@ -14,19 +14,19 @@ services:
     volumes:
      - .:/var/www/html
     networks:
-     - vessel
+     - cpnet
   node:
     build:
       context: ./docker/node
       dockerfile: Dockerfile
       args:
         uid: "${WWWUSER}"
-    image: vessel/node
+    image: cpimage/node
     user: node
     volumes:
      - .:/var/www/html
     networks:
-     - vessel
+     - cpnet
   mysql:
     image: mysql:5.7
     ports:
@@ -37,22 +37,22 @@ services:
       MYSQL_USER: "${DB_USERNAME}"
       MYSQL_PASSWORD: "${DB_PASSWORD}"
     volumes:
-     - vesselmysql:/var/lib/mysql
+     - cpmysql:/var/lib/mysql
      # - ./docker/mysql/conf.d:/etc/mysql/conf.d
      # - ./docker/mysql/logs:/var/log/mysql
     networks:
-     - vessel
+     - cpnet
   redis:
     image: redis:alpine
     volumes:
-     - vesselredis:/data
+     - cpredis:/data
     networks:
-     - vessel
+     - cpnet
 networks:
   vessel:
     driver: "bridge"
 volumes:
-  vesselmysql:
+  cpmysql:
     driver: "local"
-  vesselredis:
+  cpredis:
     driver: "local"
