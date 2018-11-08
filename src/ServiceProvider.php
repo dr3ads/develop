@@ -9,7 +9,7 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider {
         $this->publishes([
             DEV_PATH.'/docker-files/docker' => base_path('docker'),
             DEV_PATH.'/docker-files/docker-compose.yml' => base_path('docker-compose.yml'),
-            DEV_PATH.'/docker-files/vessel' => base_path('develop'),
+            DEV_PATH.'/docker-files/develop' => base_path('develop'),
         ]);
     }
 
