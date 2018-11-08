@@ -4,7 +4,7 @@ namespace Vessel;
 
 use Illuminate\Support\ServiceProvider;
 
-class VesselServiceProvider extends ServiceProvider {
+class CopyAndPasteServiceProvider extends ServiceProvider {
 
     public function boot()
     {
