@@ -149,7 +149,7 @@ if [ $# -gt 0 ]; then
         shift 1
         if [ "$EXEC" == "yes" ]; then
             $COMPOSE exec \
-                -u vessel \
+                -u develop \
                 app \
                 php "$@"
         else
@@ -164,7 +164,7 @@ if [ $# -gt 0 ]; then
         shift 1
         if [ "$EXEC" == "yes" ]; then
             $COMPOSE exec \
-                -u vessel \
+                -u develop \
                 app \
                 php artisan "$@"
         else
@@ -179,7 +179,7 @@ if [ $# -gt 0 ]; then
         shift 1
         if [ "$EXEC" == "yes" ]; then
             $COMPOSE exec \
-                -u vessel \
+                -u develop \
                 app \
                 composer "$@"
         else
@@ -209,7 +209,7 @@ if [ $# -gt 0 ]; then
         shift 1
         if [ "$EXEC" == "yes" ]; then
             $COMPOSE exec \
-                -u vessel \
+                -u develop \
                 app \
                 php artisan tinker
         else
@@ -277,23 +277,7 @@ if [ $# -gt 0 ]; then
             echo "This command cannot run the server and the mysql client at the same time."
         fi
 
-    # If "ssh" is used, pass-thru to "ssh"
-    # inside a new container
-    # e.g.: ./vessel ssh app
-    # e.g.: ./vessel ssh mysql
-    elif [ "$1" == "ssh" ]; then
-        shift 1
-        if [ "$EXEC" == "yes" ] && [ "$1" != "node" ]; then
-            $COMPOSE exec \
-                -u vessel \
-                $1 \
-                bash
-        else
-            $COMPOSE run --rm \
-                $1 \
-                bash
-        fi
-
+    
     # Else, pass-thru args to docker-compose
     else
         $COMPOSE "$@"
