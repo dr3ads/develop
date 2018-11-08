@@ -9,7 +9,7 @@ This is all there is to using it:
 
 ```bash
 composer require dr3ads/copyandpaste
-php artisan vendor:publish --provider="CopyAndPaste\\CopyAndPasteServiceProvider"
+php artisan vendor:publish --provider="CopyAndPaste\\ServiceProvider"
 
 # Run this once to initialize project
 # Must run with "bash" until initialized
