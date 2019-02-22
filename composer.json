@@ -1,23 +1,23 @@
 {
-    "name": "dr3ads/copyandpaste",
+    "name": "dr3ads/develop",
     "description": "Simple Docker dev environments",
     "license": "MIT",
     "authors": [
         {
             "name": "Arnel Basiliote",
-            "email": "arnel.basiliote@copypaste.ph"
+            "email": "arnel.basiliote@gmail.com"
         }
     ],
     "autoload": {
         "psr-4": {
-            "CopyAndPaste\\": "src/"
+            "Dr3ads\\": "src/"
         }
     },
     "require": {},
     "extra": {
         "laravel": {
             "providers": [
-                "CopyAndPaste\\ServiceProvider"
+                "Dr3ads\\ServiceProvider"
             ]
         }
     },
