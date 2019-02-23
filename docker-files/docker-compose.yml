@@ -12,7 +12,6 @@ services:
       WWWUSER: "${WWWUSER}"
     volumes:
      - .:/var/www/html
-     - ./frontend:/var/www/frontend
     networks:
      - cpnet
   node:
@@ -37,11 +36,8 @@ services:
     build:
       context: ./docker/vuecli
       dockerfile: Dockerfile
-    volumes:
-    - ./tmp:/var/www/tmp
     networks:
     - cpnet
-    working_dir: /var/www/tmp
   mysql:
     image: mysql:5.7
     ports:

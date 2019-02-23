@@ -1,6 +1,6 @@
 FROM node:latest
 
-LABEL maintainer="Chris Fidao"
+LABEL maintainer="Arnel Basiliote"
 
 WORKDIR /var/www/html
 
