@@ -1,6 +1,6 @@
 <?php
 
-namespace CopyAndPaste;
+namespace Dr3ads;
 
 class ServiceProvider extends \Illuminate\Support\ServiceProvider {
 
