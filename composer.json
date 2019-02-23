@@ -18,6 +18,9 @@
         "laravel": {
             "providers": [
                 "Dr3ads\\ServiceProvider"
+            ],
+            "dont-discover": [
+                "dr3ads/develop"
             ]
         }
     },
