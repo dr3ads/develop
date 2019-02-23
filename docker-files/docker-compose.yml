@@ -4,16 +4,15 @@ services:
     build:
       context: ./docker/app
       dockerfile: Dockerfile
-    image: vessel/app
     ports:
-     - "${APP_PORT}:80"
+     - "80:80"
     working_dir: /var/www/html
     environment:
-      CONTAINER_ENV: "${APP_ENV}"
       XDEBUG_HOST: "${XDEBUG_HOST}"
       WWWUSER: "${WWWUSER}"
     volumes:
      - .:/var/www/html
+     - ./frontend:/var/www/frontend
     networks:
      - cpnet
   node:
@@ -22,21 +21,36 @@ services:
       dockerfile: Dockerfile
       args:
         uid: "${WWWUSER}"
-    image: cpimage/node
     user: node
     volumes:
      - .:/var/www/html
     networks:
      - cpnet
+  npm:
+    image: node:latest
+    volumes:
+      - .:/var/www/html
+    networks:
+      - cpnet
+    working_dir: /var/www/html
+  vuecli:
+    build:
+      context: ./docker/vuecli
+      dockerfile: Dockerfile
+    volumes:
+    - ./tmp:/var/www/tmp
+    networks:
+    - cpnet
+    working_dir: /var/www/tmp
   mysql:
     image: mysql:5.7
     ports:
-     - "${MYSQL_PORT}:3306"
+     - "3306:3306"
     environment:
-      MYSQL_ROOT_PASSWORD: "${DB_PASSWORD}"
-      MYSQL_DATABASE: "${DB_DATABASE}"
-      MYSQL_USER: "${DB_USERNAME}"
-      MYSQL_PASSWORD: "${DB_PASSWORD}"
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: "homestead"
+      MYSQL_USER: "homestead"
+      MYSQL_PASSWORD: "password"
     volumes:
      - cpmysql:/var/lib/mysql
      # - ./docker/mysql/conf.d:/etc/mysql/conf.d
@@ -53,9 +67,9 @@ services:
     image: adminer
     restart: always
     ports:
-     - 8080:8080
+     - 8090:8080
     networks:
-     - cpnet   
+     - cpnet
 networks:
   cpnet:
     driver: "bridge"

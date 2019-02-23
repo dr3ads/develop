@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
+set -e
 
+env=${APP_ENV=production}
 
 # Ensure /.composer exists and is writable
 if [ ! -d /.composer ]; then
@@ -15,4 +17,16 @@ if [ $# -gt 0 ];then
 else
     # Otherwise start supervisord
     /usr/bin/supervisord
+fi
+
+
+if [ "$env" != 'local' ]
+    echo "Caching Configuration"
+    (
+        cd /var/www/html &&
+        php artisan config:cache && 
+        php artisan route:cache &&
+        php artisan view:cache &&
+        php artisan optimize
+    )
 fi

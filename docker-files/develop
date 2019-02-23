@@ -65,23 +65,10 @@ if [ $# -gt 0 ]; then
         source .env
     fi
 
-
     # Edit .env file to set correct hostnames for mysql/redis
     if [ "$1" == "init" ]; then
         echo "DEVELOP: Initializing Vessel..."
-        COMPOSER=$(which composer)
-
-        echo "DEVELOP: Installing Predis"
-        if [ -z "$COMPOSER" ]; then
-          docker run -u $UID --rm -it \
-            -v $(pwd):/opt \
-            -w /opt \
-            copyandpaste/web-app:latest \
-            composer require predis/predis
-        else
-            $COMPOSER require predis/predis
-        fi
-
+        
         if [ ! -f .env ]; then
             echo "No .env file found within current working directory $(pwd)"
             echo "Create a .env file before re-initializing"
